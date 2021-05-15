@@ -31,6 +31,8 @@ public class Client extends JFrame implements Runnable,ActionListener{
     private JButton bt_send;
     private Timer timer;
     private Integer second, minute;
+    private JLabel player_score_label;
+    private JLabel opponent_score_label;
     JLabel l_demthoigian;
     TextField textField;
     JPanel p;
@@ -39,6 +41,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
     JButton start;
     Boolean play= false;
     int xx, yy, x, y;
+
 
 
     Chat boxChat;
@@ -84,8 +87,21 @@ public class Client extends JFrame implements Runnable,ActionListener{
         p = new JPanel();
         p.setBounds(10, 30, 400, 400);
         p.setLayout(new GridLayout(10, 10));
-        this.add(p);
-
+        add(p);
+        player_score_label = new JLabel("MY SCORE: " + Integer.toString(player_score));
+        player_score_label.setLayout(null);
+        player_score_label.setBounds(520, 20, 200, 20);
+        player_score_label.setFont(new Font("Consolas", Font.BOLD, 18));
+        player_score_label.setForeground(Color.RED);
+        player_score_label.setVisible(true);
+        opponent_score_label = new JLabel("ENEMY'S SCORE: " + Integer.toString(opponent_score));
+        opponent_score_label.setLayout(null);
+        opponent_score_label.setBounds(520, 50, 200, 20);
+        opponent_score_label.setFont(new Font("Consolas", Font.PLAIN, 14));
+        opponent_score_label.setForeground(Color.BLACK);
+        opponent_score_label.setVisible(true);
+        add(player_score_label);
+        add(opponent_score_label);
         this.username = username;
         chatServer=host;
         connectToServer();
@@ -118,6 +134,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
                             current_button.setVisible(false);
                             ++current_number;
                             ++player_score;
+                            player_score_label.setText("MY SCORE: " + Integer.toString(player_score));
                         }
                     }
                 });
@@ -167,6 +184,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
                 }
             }
         });
+
 
 
         //   setSize(700,600);
@@ -288,6 +306,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
                         }
                         ++current_number;
                         ++opponent_score;
+                        opponent_score_label.setText("ENEMY'S SCORE: " + Integer.toString(opponent_score));
                     }
                 }
                 /*
