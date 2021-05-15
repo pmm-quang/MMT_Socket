@@ -37,7 +37,16 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Application.Server">
+=======
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\0. IntelliJ\Project\MMT_Socket\Game\src\client" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Client">
+>>>>>>> Stashed changes
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="Game" />
@@ -117,6 +126,7 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620801734256" />
+<<<<<<< Updated upstream
     <state width="1557" height="171" key="GridCell.Tab.0.bottom" timestamp="1621058913118">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -139,6 +149,26 @@
     <state width="1557" height="171" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1621058913118" />
     <state x="259" y="0" key="SettingsEditor" timestamp="1621058546929">
       <screen x="0" y="0" width="1600" height="860" />
+=======
+    <state width="753" height="187" key="GridCell.Tab.0.bottom" timestamp="1620997257986">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="753" height="187" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620997257986" />
+    <state width="753" height="187" key="GridCell.Tab.0.center" timestamp="1620997257986">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="753" height="187" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620997257986" />
+    <state width="753" height="187" key="GridCell.Tab.0.left" timestamp="1620997257986">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="753" height="187" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620997257986" />
+    <state width="753" height="187" key="GridCell.Tab.0.right" timestamp="1620997257986">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="753" height="187" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620997257986" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1620782072272">
+      <screen x="0" y="0" width="1536" height="824" />
+>>>>>>> Stashed changes
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1620782072272" />
     <state x="259" y="0" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1621058546929" />
