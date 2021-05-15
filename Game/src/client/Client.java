@@ -22,8 +22,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
 
     private Square[][] arrayButton;
     //qui dinh chieu dai va chieu rong cua table
-    private int length=10;
-    private int width=10;
+
     private GridBagConstraints contraints = new GridBagConstraints();
     private GridBagLayout layout = new GridBagLayout();
 
@@ -44,7 +43,16 @@ public class Client extends JFrame implements Runnable,ActionListener{
 
     Chat boxChat;
     String username = "";
-    private static int i,j;
+
+    /*TODO: Nhét cho t cái trường gì mà nó hiện điểm của mình với của địch với, hai cái score t để ở dưới rồi
+            với lại xem cái hét game thì làm kiểu gì nhé
+            nếu không làm đc bảo t
+    */
+
+    public static int SQRT_OF_NUMBER_OF_NUMBERS = 10;   //Thêm cái này cho đỡ viết số 10
+    static int current_number;                          //Số hiện tại cần phải bấm để có điểm
+    private int player_score;                           //Điểm của người chơi
+    private int opponent_score;                         //Điểm của đối thủ
 
     private int sttu;
     /*
@@ -63,31 +71,66 @@ public class Client extends JFrame implements Runnable,ActionListener{
 
     private boolean dacowinner = false;
     public Client(String host, String username){
-
         super("Client");
+        player_score = 0;
+        opponent_score = 0;
+        current_number = 1;
         this.setSize(700, 600);
         x = 25;
         y = 25;
         this.getContentPane().setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+        p = new JPanel();
+        p.setBounds(10, 30, 400, 400);
+        p.setLayout(new GridLayout(10, 10));
+        this.add(p);
 
         this.username = username;
         chatServer=host;
         connectToServer();
         getStreams();
-        sendData(Key.LOGIN.toString() + ",đã kết nối!");
 
+        arrayButton = new Square[SQRT_OF_NUMBER_OF_NUMBERS][SQRT_OF_NUMBER_OF_NUMBERS];
+        for(int i=0;i<SQRT_OF_NUMBER_OF_NUMBERS;i++){
+            for ( int j=0;j<SQRT_OF_NUMBER_OF_NUMBERS;j++) {
+                arrayButton[i][j] = new Square(false);
+                try {
+                    arrayButton[i][j].setValue(input.readInt());
+                    System.out.println(arrayButton[i][j].getValue());
+                } catch (IOException e) {
+                    System.out.println("Loi doc ma tran");
+                }
+                arrayButton[i][j].setBackground(Color.LIGHT_GRAY);
+                arrayButton[i][j].setMargin(new Insets(0, 0, 0, 0));
+                arrayButton[i][j].setFont(new Font("Consolas", Font.PLAIN, 14));
+                arrayButton[i][j].setText(Integer.toString(arrayButton[i][j].getValue()));
+                p.add(arrayButton[i][j]);
+                int finalI = i;
+                int finalJ = j;
+                arrayButton[i][j].addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        super.mousePressed(e);
+                        Square current_button = arrayButton[finalI][finalJ];
+                        if (current_button.getValue() == current_number) {
+                            sendData(Key.GAME.toString() + "," + current_number);
+                            current_button.setVisible(false);
+                            ++current_number;
+                            ++player_score;
+                        }
+                    }
+                });
+            }
+        }
+        sendData(Key.LOGIN.toString() + ",đã kết nối!");
+        add(ButtonPanel());
         boxChat = new Chat();
         boxChat.setBounds(430, 170,260, 350);
         add(boxChat);
         boxChat.notice(username, Key.LOGIN.toString());
 
-        p = new JPanel();
-        p.setBounds(10, 30, 400, 400);
-        p.setLayout(new GridLayout(10, 10));
-        this.add(p);
-        add(ButtonPanel());
+
 
         boxChat.getBt_send().addActionListener(new ActionListener() {
             @Override
@@ -125,17 +168,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
             }
         });
 
-        arrayButton = new Square[length][width];
-        for(int i=0;i<length;i++){
-            for ( int j=0;j<width;j++) {
 
-                arrayButton[i][j] = new Square(false);
-                arrayButton[i][j].setBackground(Color.LIGHT_GRAY);
-                p.add(arrayButton[i][j]);
-
-                arrayButton[i][j].addActionListener(this);
-            }
-        }
         //   setSize(700,600);
         setVisible(true);
         setResizable(false);
@@ -178,7 +211,7 @@ public class Client extends JFrame implements Runnable,ActionListener{
             System.exit(0);
         }
         catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Loi khi processConnection");
         }
     }
 
@@ -194,16 +227,17 @@ public class Client extends JFrame implements Runnable,ActionListener{
     }
 
     private void getStreams()  {
-
-
         try {
             output = new ObjectOutputStream(client.getOutputStream());
             output.flush();
             input = new ObjectInputStream(client.getInputStream());
+
+            //getNumberMatrixFromServer(input);
+
         } catch (NullPointerException e) {
             System.exit(0);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Loi getStream");
         }
 
         //displayArea.append("\n got IO stream \n");
@@ -241,6 +275,20 @@ public class Client extends JFrame implements Runnable,ActionListener{
                     play = true;
                 } else if (tmp[0].equals(Key.QUIT.toString())) {
                     boxChat.notice(tmp[2], tmp[0]);
+                } else if (tmp[0].equals(Key.GAME.toString())) {
+                    //Tao mượn cái key.game để đại diện cho thằng client gửi tín hiệu bấm nút số
+                    if (tmp[1].equals(Integer.toString(current_number))) {
+                        for (int i = 0; i < SQRT_OF_NUMBER_OF_NUMBERS; ++i) {
+                            for (int j = 0; j < SQRT_OF_NUMBER_OF_NUMBERS; ++j) {
+                                if (arrayButton[i][j].getValue() == current_number) {
+                                    arrayButton[i][j].setVisible(false);
+                                    break;
+                                }
+                            }
+                        }
+                        ++current_number;
+                        ++opponent_score;
+                    }
                 }
                 /*
                  * Truong hop nay client nhan duoc tin hieu tu client kia
@@ -262,6 +310,22 @@ public class Client extends JFrame implements Runnable,ActionListener{
         output.close();
         client.close();
     }
+
+    /*private void getNumberMatrixFromServer(ObjectInputStream input) {
+        for (int i = 0; i < SQRT_OF_NUMBER_OF_NUMBERS; ++i) {
+            for (int j = 0; j < SQRT_OF_NUMBER_OF_NUMBERS; ++j) {
+                try {
+
+                } catch (IOException e) {
+                    System.out.println("Error when getting number matrix from server");
+                }
+                System.out.print(arrayButton[i][j].getValue() + " ");
+            }
+            System.out.println();
+        }
+    }
+
+     */
 
     private void sendData(String message){
         try{
@@ -300,22 +364,19 @@ public class Client extends JFrame implements Runnable,ActionListener{
 
     public void actionPerformed(ActionEvent event) {
         StringBuffer buffer = new StringBuffer(2048);
-        if (play ) {
-            for(int i= 0;i<length ;i++) {
-                for (int j = 0; j < width; j++) {
+        if (play) {
+            for(int i= 0;i<SQRT_OF_NUMBER_OF_NUMBERS ;i++) {
+                for (int j = 0; j < SQRT_OF_NUMBER_OF_NUMBERS; j++) {
                     //tim xem nut nao duoc nhan
                     //nham lay vi tri cua button duoc kich hoat
-
                     if (event.getSource() == arrayButton[i][j]) {
                         //client 1
-                        arrayButton[i][j].setIcon(new ImageIcon("src\\x.gif"));
+                        System.out.println("Bam nut " + i + j);
                         arrayButton[i][j].setStatus(true);
                         arrayButton[i][j].setValue(1);
                         //message gui di cho server
                         buffer.append("game,").append(i).append(",").append(j);
                         sendData(buffer.toString());
-
-
                     }
                     arrayButton[i][j].setAutoscrolls(false);
                     arrayButton[i][j].setRolloverEnabled(false);

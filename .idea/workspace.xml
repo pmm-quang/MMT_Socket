@@ -32,11 +32,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Game/src/client" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="Game" />
@@ -51,7 +52,7 @@
       </method>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="client.Server" />
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="Game" />
       <extension name="coverage">
         <pattern>
@@ -78,14 +79,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.Client" />
-      <item itemvalue="Application.Server (1)" />
       <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.Server (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -101,10 +100,15 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620782143433">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="232" y="70" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1621044403599">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1620782143433" />
+    <state x="232" y="70" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1621044403599" />
+    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1621056665589">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1621056665589" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1620781994632">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -113,26 +117,31 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620801734256" />
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1620825862091">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1557" height="171" key="GridCell.Tab.0.bottom" timestamp="1621058913118">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620825862091" />
-    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1620825862091">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1557" height="171" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1621058913118" />
+    <state width="1557" height="171" key="GridCell.Tab.0.center" timestamp="1621058913118">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620825862091" />
-    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1620825862091">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1557" height="171" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1621058913118" />
+    <state width="1557" height="171" key="GridCell.Tab.0.left" timestamp="1621058913117">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620825862091" />
-    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1620825862091">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1557" height="171" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1621058913117" />
+    <state width="1557" height="171" key="GridCell.Tab.0.right" timestamp="1621058913118">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620825862091" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1620782072272">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1557" height="171" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1621058913118" />
+    <state x="259" y="0" key="SettingsEditor" timestamp="1621058546929">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1620782072272" />
+    <state x="259" y="0" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1621058546929" />
     <state x="209" y="33" key="new project wizard" timestamp="1620779410208">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
